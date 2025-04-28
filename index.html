@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
+
+    <script src="script.js" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+    <title>Working with lists</title>
+</head>
+<body>
+    <h1>Working with lists Lab</h1>
+    <div id="revising_content">
+        <h2>List Operations Quick Reference</h2>
+        <ol>
+            <li><strong>.append(item)</strong> - Adds an item to the end of the list</li>
+            <li><strong>.pop()</strong> - Removes and returns the last item in the list</li>
+            <li><strong>.pop(index)</strong> - Removes and returns the item at the specified index</li>
+            <li><strong>.index(item)</strong> - Returns the index of the first occurrence of the item</li>
+            <li><strong>list[index]</strong> - Accesses the element at the specified index (0-based)</li>
+            <li><strong>list[-1]</strong> - Accesses the last element, -2 for second-to-last, etc.</li>
+            <li><strong>.sort()</strong> - Sorts the list in-place (modifies the original list)</li>
+            <li><strong>sorted(list)</strong> - Returns a new sorted list without modifying the original</li>
+            <li><strong>.reverse()</strong> - Reverses the order of items in the list</li>
+            <li><strong>len(list)</strong> - Returns the number of items in the list</li>
+        </ol>
+    </div>
+    <div id="main_content">
+        <section id="creating_lists">
+        <h2>Creating Lists</h2>
+        <button class="copy-btn">Copy</button>
+        <pre><code class="language-python">
+# Creating lists
+empty_list = []
+numbers = [1, 2, 3, 4, 5]
+mixed = [1, "hello", 3.14, True]
+nested = [1, [2, 3], [4, 5, 6]]
+boolen_list=[True,False,True,False,False]
+string_list=['Zach','Alice','Bob']
+# In Python, a list can contain elements of different data types, 
+# which is different from many other programming languages.
+
+# Creating a list with range
+numbers_range = list(range(1, 6))  # Creates [1, 2, 3, 4, 5]
+print(numbers_range)
+            </code></pre>
+            
+            <h3>Output:</h3>
+            <pre><code class="language-python">
+[1, 2, 3, 4, 5]
+        </code></pre>
+</section>
+        <section id="Slicing">
+            <h2>Slicing List Elements</h2>
+            <button class="copy-btn">Copy</button>
+            <pre><code class="language-python">
+# Slicing lists is used to easily access to specific List
+# list_name[start:end:step] 
+# start : index to begin the slice (inclusive)
+# end : Index to end the slice (exclusive)
+# step : Step size, specifying the interval between elements
+fruits = ["apple", "banana", "cherry", "date", "elderberry"]
+
+# Slicing lists
+print(fruits[1:3])     # Elements from index 1 to 2
+print(fruits[:3])      # Elements from start to index 2
+print(fruits[2:])      # Elements from index 2 to end
+print(fruits[:])       # All elements (creates a copy)
+            </code></pre>
+            
+            <h3>Output:</h3>
+            <pre><code class="language-python">
+['banana', 'cherry']
+['apple', 'banana', 'cherry']
+['cherry', 'date', 'elderberry']
+['apple', 'banana', 'cherry', 'date', 'elderberry']
+            </code></pre>
+        </section>
+
+        <section id="modifying_lists">
+            <h2>Modifying Lists</h2>
+            <button class="copy-btn">Copy</button>
+            <pre><code class="language-python">
+fruits = ["apple", "banana", "cherry"]
+print("Original list:", fruits)
+
+# Changing an element
+fruits[1] = "blueberry"
+print("After changing element:", fruits)
+
+# Adding elements
+fruits.append("date")
+print("After append:", fruits)
+
+fruits.insert(2, "grape")
+print("After insert:", fruits)
+
+fruits.extend(["kiwi", "lemon"])
+print("After extend:", fruits)
+
+# Removing elements
+fruits.remove("apple")
+print("After remove:", fruits)
+
+popped = fruits.pop()
+print("Popped item:", popped)
+print("After pop:", fruits)
+
+del fruits[0]
+print("After del:", fruits)
+
+# Clearing the list
+fruits.clear()
+print("After clear:", fruits)
+            </code></pre>
+            <h3>Output:</h3>
+            <pre><code class="language-python">
+Original list: ['apple', 'banana', 'cherry']
+After changing element: ['apple', 'blueberry', 'cherry']
+After append: ['apple', 'blueberry', 'cherry', 'date']
+After insert: ['apple', 'blueberry', 'grape', 'cherry', 'date']
+After extend: ['apple', 'blueberry', 'grape', 'cherry', 'date', 'kiwi', 'lemon']
+After remove: ['blueberry', 'grape', 'cherry', 'date', 'kiwi', 'lemon']
+Popped item: lemon
+After pop: ['blueberry', 'grape', 'cherry', 'date', 'kiwi']
+After del: ['grape', 'cherry', 'date', 'kiwi']
+After clear: []
+            </code></pre>
+        </section>
+        <section id="loop_each">
+            <h2>Looping through Lists</h2>
+            
+            <h3>Basic For Loop</h3>
+            <p>The simplest way to iterate through a list is with a for loop. This directly accesses each element:</p>
+            <button class="copy-btn">Copy</button>
+            <pre><code class="language-python">
+        fruits_list = ["apple", "pineapple", "banana", "watermelon"]
+        
+        # Basic for loop
+        print("Loop through each item:")
+        for fruit in fruits_list:
+            print(fruit)
+            </code></pre>
+            
+            <h3>Loop with Index</h3>
+            <p>When you need the position of elements, you can loop through indices using the range and len functions:</p>
+            <button class="copy-btn">Copy</button>
+            <pre><code class="language-python">
+        # Loop with index
+        print("\nLoop with index:")
+        for i in range(len(fruits_list)): 
+            print(f"Index {i}: {fruits_list[i]}")
+            </code></pre>
+            
+            <h3>Loop with Enumerate</h3>
+            <p>The enumerate function provides both the index and element in a single loop - this is often the most efficient approach:</p>
+            <button class="copy-btn">Copy</button>
+            <pre><code class="language-python">
+        # Loop with enumerate
+        print("\nLoop with enumerate:")
+        for index, fruit in enumerate(fruits_list):
+            print(f"Position {index}: {fruit}")
+            </code></pre>
+            
+            <h3>Output for all loops:</h3>
+            <pre><code class="language-python">
+        Loop through each item:
+        apple
+        pineapple
+        banana
+        watermelon
+        
+        Loop with index:
+        Index 0: apple
+        Index 1: pineapple
+        Index 2: banana
+        Index 3: watermelon
+        
+        Loop with enumerate:
+        Position 0: apple
+        Position 1: pineapple
+        Position 2: banana
+        Position 3: watermelon
+            </code></pre>
+        </section>
+        </div>
+        <section>
+            <h2>Practice Problem (You do not need to solve all of them) </h2>
+        <ol>
+            <li>
+                <h4>Create your own favorite book lists and print it out by line </h4>
+        </li>
+        <li>
+                <h4>Create a list of the first 100 squares of 2  </h4>
+        </li>
+        <li>
+            <h4>Reverse half of a list (when the length of the list is odd, the left half is greater than the right half)</h4>
+            <h5>hint:  slice method is a key. </h5>
+            <h5>Sample 1:</h5>
+            <p>Input: [1,2,3,4,5,6]</p>
+            <p>Output: [4,5,6,1,2,3]</p>
+            <h5>Sample 2:</h5>
+            <p>Input: [9,7,3,4,2,6,5]</p>
+            <p>Output: [4,2,6,5,9,7,3]</p>
+        </li>
+        
+        <li><h4>Write a Python program to sum all the items in a list. (do not use built-in function lets using loop)</h4>
+        </li>
+        <li>
+            <h4>Write a Python program to split list into two list (when the length of the list is odd, the right half is greater than the left half)</h4>
+            <h5>Sample 1:</h5>
+            <p>Input: ["banana","advocado","orange","melon"]</p>
+            <p>Output: ["banana","advocado"] and ["orange","melon"]</p>
+            <h5>Sample 2:</h5>
+            <p>Input: [True,"wrong","correct",False,False]</p>
+            <p>Output: [True,"wrong"] and ["correct",False,False]</p>
+        </li>
+        <li>
+            <h4>Can we append one list to another list ?</h4>
+        </li>
+        <li>
+            <h4>Create your favorite fruit list </h4>
+           <p>My favorite list is ['apple','banana','watermelon','mango','stawberry']</p> 
+           Can you combine your list and mine ?  Does the new list become a list inside a list or just a merged list?
+        </li>
+        <li>
+            <h4>When working with lists, are we changing the original list or working on a copy?</h4>
+            <h4>If we want to avoid changing the original list, how can we create a real copy?</h4>
+        </li>
+        
+<li>
+    <h4>Remove Every Second Element</h4>
+    <p>Given a list, remove every second element (index 1, 3, 5, etc.)</p>
+    <h5>Sample:</h5>
+    <p>Input: [10,20,30,40,50,60]</p>
+    <p>Output: [10,30,50]</p>
+    <p>Can you do it without creating a new list?</p>
+</li>
+    </ol>
+        </section>
+    </div>
+</body>
+</html>
